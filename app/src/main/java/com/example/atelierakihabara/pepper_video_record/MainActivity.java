@@ -5,12 +5,14 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
 
+    String TAG = "pep-video-record";
     private final static int video_capture = 1;
 
     private VideoView videoView;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == video_capture && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
+            Log.d(TAG, videoUri.toString());
             videoView.setVideoURI(videoUri);
         }
     }
